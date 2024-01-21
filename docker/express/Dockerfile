@@ -10,5 +10,7 @@ COPY ./docker/express/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
+RUN npm run build
+
 # Setting up the work directory
 WORKDIR /app
