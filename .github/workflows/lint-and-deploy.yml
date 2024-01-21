@@ -43,8 +43,7 @@ jobs:
             git checkout main;
             git pull;
             touch .env;
-            echo "${{ secrets.ENV_FILE }}" > .env;
-            cat .env;
+            printf "%s\n" ${{ secrets.ENV_FILE }} > .env;
             docker compose down;
             docker compose up -d;
             docker system prune --all --force;
