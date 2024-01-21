@@ -10,4 +10,3 @@ COPY ./ssl /etc/ssl
 
 ENTRYPOINT [ "/entrypoint" ]
 CMD ["nginx", "-g", "daemon off;"]
-
