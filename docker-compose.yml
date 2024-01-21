@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  express:
+    build:
+      context: .
+      dockerfile: ./docker/express/Dockerfile
+    image: express
+    command: /start
+    env_file:
+      - .env
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    volumes:
+      - .:/app
+    restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - express
