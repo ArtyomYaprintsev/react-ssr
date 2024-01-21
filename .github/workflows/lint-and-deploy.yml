@@ -1,4 +1,5 @@
 name: React SSR CI
+run-name: Linting and deploy react project
 on:
   push:
     branches: ["main"]
@@ -26,12 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-      - name: Install packages
-        run: npm install
       - name: Run command on remote server
         uses: D3rHase/ssh-command-action@v0.2.2
         with:
