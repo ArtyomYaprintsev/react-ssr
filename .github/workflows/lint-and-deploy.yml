@@ -40,5 +40,5 @@ jobs:
             touch .env;
             printf "%s\n" ${{ secrets.ENV_FILE }} > .env;
             docker compose down;
-            docker compose up -d;
+            docker compose up --build -d;
             docker system prune --all --force;
