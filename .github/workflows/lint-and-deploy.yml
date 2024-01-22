@@ -41,4 +41,3 @@ jobs:
             printf "%s\n" ${{ secrets.ENV_FILE }} > .env;
             docker compose down;
             docker compose up --build -d;
-            docker system prune --all --force;
