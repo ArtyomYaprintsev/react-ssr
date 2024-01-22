@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: ./docker/express/Dockerfile
     image: express
-    command: /start
     env_file:
       - .env
     ports:

@@ -1,16 +1,22 @@
-# Fetching the minified node image on apline linux
-FROM node:slim
+FROM node:alpine
 
-# Installing dependencies
-COPY ./package.json /package.json
-COPY ./package-lock.json /package-lock.json
+# Environment variables
+ARG SERVER_PORT=8080
+
+RUN mkdir -p /home/node/app/node_modules
+
+WORKDIR /home/node/app
+
+# Copy packages
+COPY ./package*.json ./
+
+# Inst
 RUN npm install
 
-COPY ./docker/express/start /start
-RUN sed -i 's/\r$//g' /start
-RUN chmod +x /start
+COPY . .
 
 RUN npm run build
 
-# Setting up the work directory
-WORKDIR /app
+EXPOSE ${SERVER_PORT}
+
+CMD [ "node", "server.js" ]
